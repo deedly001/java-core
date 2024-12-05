@@ -2,7 +2,7 @@ package org.skypro.skyshop;
 
 
 public class ProductBasket {
-    private static final Product[] products = new Product[5];
+    private final Product[] products = new Product[5];
 
     public void setProductInBasket(Product product) {
         for (int i = 0; i < products.length; i++) {

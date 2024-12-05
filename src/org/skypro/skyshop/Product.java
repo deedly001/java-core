@@ -31,6 +31,4 @@ public class Product {
         this.productName = null;
         this.productCost = null;
     }
-
-
 }

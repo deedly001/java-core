@@ -7,7 +7,6 @@ public class Product {
     public Product(String productName, Integer productCost) {
         this.productName = productName;
         this.productCost = productCost;
-//        this.productCount = productCount;
     }
 
     public String getProductName() {
@@ -17,7 +16,6 @@ public class Product {
     public Integer getProductCost() {
         return this.productCost;
     }
-
 
     public void setProductName(String name) {
         this.productName = name;
@@ -31,6 +29,4 @@ public class Product {
         this.productName = null;
         this.productCost = null;
     }
-
-
 }

@@ -4,7 +4,7 @@ package org.skypro.skyshop;
 public class ProductBasket {
     private static final Product[] products = new Product[5];
 
-    public void setProductInCart(Product product) {
+    public void setProductInBasket(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
                 products[i] = product;
@@ -35,7 +35,7 @@ public class ProductBasket {
         }
     }
 
-    public void printAllCart() {
+    public void printAllBasket() {
         int counter = 0;
         for (Product product : products) {
             if (product != null) {
@@ -51,13 +51,12 @@ public class ProductBasket {
         }
     }
 
-
-    public void getCartCleaner() {
+    public void getBasketCleaner() {
         for (Product product : products) {
             if (product != null) {
                 product.setBasketNull();
             }
         }
-
     }
+
 }

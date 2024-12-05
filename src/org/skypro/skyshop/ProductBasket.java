@@ -51,6 +51,24 @@ public class ProductBasket {
         }
     }
 
+    public void getProductByName(String productName) {
+        if (productName != null) {
+            boolean searchStatus = false;
+            for (int i = 0; i < products.length; i++) {
+                if (productName.equalsIgnoreCase(products[i].getProductName())) {
+                    searchStatus = true;
+                }
+            }
+            if (searchStatus) {
+                System.out.println("Продукт " + productName + " есть в корзине");
+            } else {
+                System.out.println("такого продукта нет в корзине");
+            }
+
+        }
+
+    }
+
     public void getBasketCleaner() {
         for (Product product : products) {
             if (product != null) {
@@ -58,5 +76,6 @@ public class ProductBasket {
             }
         }
     }
+
 
 }

@@ -27,5 +27,6 @@ public class App {
 //        products.getAllCost();
 //        System.out.println(" -> Поиск товара по имени в пустой корзине.");
 //        products.getProductByName("Apple");
+
     }
 }

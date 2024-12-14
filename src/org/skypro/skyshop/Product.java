@@ -28,7 +28,6 @@ public abstract class Product {
         return DiscountedProduct.discountPrice;
     }
 
-
     public abstract Integer getPrice();
     public  abstract  boolean isSpecial();
 }

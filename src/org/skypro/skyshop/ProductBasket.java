@@ -19,27 +19,27 @@ public class ProductBasket {
         Integer allCost = 0;
         for (Product product : products) {
             if (product != null) {
-                if (product.getProductCost() != null) {
-                    allCost += product.getProductCost();
+                if (product.getPrice() != null) {
+                    allCost += product.getPrice();
                 }
             }
         }
         System.out.println("Сумма товаров в корзине: " + allCost + " руб.");
     }
 
-    public void printAll() {
-        for (Product product : products) {
-            if (product != null) {
-                System.out.println(product.getProductName() + " : " + product.getProductCost());
-            }
-        }
-    }
+//    public void printAll() {
+//        for (Product product : products) {
+//            if (product != null) {
+//                System.out.println(product.getProductName() + " : " + product.getPrice());
+//            }
+//        }
+//    }
 
     public void printAllBasket() {
         int counter = 0;
         for (Product product : products) {
             if (product != null) {
-                System.out.println(product.getProductName() + " : " + product.getProductCost());
+                System.out.println(product.getProductName() + " : " + product.getPrice());
             } else {
                 counter++;
             }
@@ -64,9 +64,7 @@ public class ProductBasket {
             } else {
                 System.out.println("такого продукта нет в корзине");
             }
-
         }
-
     }
 
     public void getBasketCleaner() {
@@ -78,4 +76,7 @@ public class ProductBasket {
     }
 
 
+    public String toString() {
+        return toString();
+    }
 }

@@ -15,6 +15,7 @@ public class ProductBasket {
         }
     }
 
+
     public void getAllCost() {
         Integer allCost = 0;
         for (Product product : products) {
@@ -24,22 +25,19 @@ public class ProductBasket {
                 }
             }
         }
-        System.out.println("Сумма товаров в корзине: " + allCost + " руб.");
+        System.out.println("Итого: " + allCost);
     }
 
-//    public void printAll() {
-//        for (Product product : products) {
-//            if (product != null) {
-//                System.out.println(product.getProductName() + " : " + product.getPrice());
-//            }
-//        }
-//    }
 
     public void printAllBasket() {
         int counter = 0;
+        int specialCounter = 0;
         for (Product product : products) {
             if (product != null) {
-                System.out.println(product.getProductName() + " : " + product.getPrice());
+                System.out.println(product);
+                if (product.isSpecial()) {
+                    specialCounter++;
+                }
             } else {
                 counter++;
             }
@@ -48,6 +46,9 @@ public class ProductBasket {
             System.out.println("в корзине пусто");
         } else {
             getAllCost();
+        }
+        if (specialCounter != 0) {
+            System.out.println("Специальных товаров: " + specialCounter);
         }
     }
 
@@ -68,15 +69,33 @@ public class ProductBasket {
     }
 
     public void getBasketCleaner() {
-        for (Product product : products) {
-            if (product != null) {
-                product.setBasketNull();
+        for (int i = 0; i < products.length; i++) {
+            products[i] = null;
+        }
+    }
+
+    public void getDiscountedProduct(DiscountedProduct DiscountedProduct) {
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] == null) {
+                products[i] = DiscountedProduct;
+                break;
+            } else if (products.length - 1 == i && products[i] != null) {
+                System.out.println("Невозможно добавить продукт");
+            }
+        }
+
+    }
+
+
+    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] == null) {
+                products[i] = FixPriceProduct;
+                break;
+            } else if (products.length - 1 == i && products[i] != null) {
+                System.out.println("Невозможно добавить продукт");
             }
         }
     }
 
-
-    public String toString() {
-        return toString();
-    }
 }

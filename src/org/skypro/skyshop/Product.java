@@ -2,6 +2,8 @@ package org.skypro.skyshop;
 
 public abstract class Product {
     private String productName;
+    private Integer discountPrice;
+    public boolean isSpecial;
 
     public Product(String productName) {
         this.productName = productName;
@@ -15,19 +17,9 @@ public abstract class Product {
         this.productName = name;
     }
 
-//    public void setPrice(Integer cost) {
-//        this.productCost = cost;
-//    }
-
-    public void setBasketNull() {
-        this.productName = null;
-//        this.productCost = null;
-    }
-
-    private Integer getDiscount(){
-        return DiscountedProduct.discountPrice;
-    }
-
     public abstract Integer getPrice();
-    public  abstract  boolean isSpecial();
+
+    public abstract void setPrice(Integer cost);
+
+    public abstract boolean isSpecial();
 }

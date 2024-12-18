@@ -1,9 +1,8 @@
 package org.skypro.skyshop;
 
 public class SimpleProduct extends Product {
-    private final Integer productCost;
+    private Integer productCost;
     private String productName;
-    private boolean isSpecial = false;
 
     public SimpleProduct(String productName, Integer productCost) {
         super(productName);
@@ -16,12 +15,16 @@ public class SimpleProduct extends Product {
     }
 
     @Override
+    public void setPrice(Integer cost) {
+        this.productCost = cost;
+    }
+
     public boolean isSpecial() {
         return false;
     }
 
     @Override
     public String toString() {
-        return "<" + productName + "> : <" + productCost + ">" ;
+        return getProductName() + " : " + getPrice();
     }
 }

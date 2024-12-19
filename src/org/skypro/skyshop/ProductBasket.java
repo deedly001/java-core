@@ -1,6 +1,11 @@
 package org.skypro.skyshop;
 
 
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
+
+import java.util.Arrays;
+
 public class ProductBasket {
     private final Product[] products = new Product[5];
 
@@ -69,9 +74,7 @@ public class ProductBasket {
     }
 
     public void getBasketCleaner() {
-        for (int i = 0; i < products.length; i++) {
-            products[i] = null;
-        }
+        Arrays.fill(products, null);
     }
 
     public void getDiscountedProduct(DiscountedProduct DiscountedProduct) {
@@ -97,5 +100,16 @@ public class ProductBasket {
             }
         }
     }
+
+//    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
+//        for (int i = 0; i < products.length; i++) {
+//            if (products[i] == null) {
+//                products[i] = FixPriceProduct;
+//                break;
+//            } else if (products.length - 1 == i && products[i] != null) {
+//                System.out.println("Невозможно добавить продукт");
+//            }
+//        }
+//    }
 
 }

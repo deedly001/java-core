@@ -1,8 +1,10 @@
-package org.skypro.skyshop;
+package org.skypro.skyshop.product;
+
+import org.skypro.skyshop.Product;
 
 public class DiscountedProduct extends Product {
     private Integer basePrice;
-    protected Integer discountPrice;
+    private final Integer discountPrice;
 
     public DiscountedProduct(String productName, Integer productCost, Integer discountPrice) {
         super(productName);

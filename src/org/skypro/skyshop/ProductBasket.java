@@ -9,6 +9,10 @@ import java.util.Arrays;
 public class ProductBasket {
     private final Product[] products = new Product[5];
 
+    public int getArrSize(){
+        return products.length;
+    }
+
     public void setProductInBasket(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {

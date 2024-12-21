@@ -17,8 +17,12 @@ public abstract class Product implements Searchable {
         this.productName = name;
     }
 
+    public String getProductType(){
+        return "PRODUCT";
+    }
+
     public String getSearchTerm(){
-        return "name: "+ getProductName() + " type: " +  "PRODUCT";
+        return "name: "+ getProductName() + " type: " + getProductType();
     }
 
     public abstract Integer getPrice();

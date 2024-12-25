@@ -1,6 +1,6 @@
 package org.skypro.skyshop;
 
-public final class Article {
+public final class Article implements Searchable {
     private String article;
     private String articleText;
 
@@ -9,30 +9,17 @@ public final class Article {
         return article + "\n" + articleText;
     }
 
-    public String getArticleName(){
+    public String getArticleName() {
         return this.article;
     }
 
-    public String getArticleText(){
+    public String getArticleText() {
         return "ARTICLE";
     }
 
-    public String getSearchTerm(){
-        return "name: "+ getArticleName() + " type: " + getArticleText();
+    public String getSearchTerm() {
+        return "name: " + getArticleName() + " type: " + getArticleText();
     }
 }
 
-interface Searchable{
-//    public default String getSearchTerm(String text){
-//        return text;
-//    }
-//
-//    public default String getContentType(){
-//        return null;
-//    }
-//
-//    public default void getStringRepresentation(){
-//        System.out.println("«имя: "+ getSearchTerm() +" — тип: " + getContentType());
-//    }
 
-}

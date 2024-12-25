@@ -13,18 +13,6 @@ public class ProductBasket {
         return products.length;
     }
 
-    public void setProductInBasket(Product product) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                break;
-            } else if (products.length - 1 == i && products[i] != null) {
-                System.out.println("Невозможно добавить продукт");
-            }
-        }
-    }
-
-
     public void getAllCost() {
         Integer allCost = 0;
         for (Product product : products) {
@@ -81,39 +69,15 @@ public class ProductBasket {
         Arrays.fill(products, null);
     }
 
-    public void getDiscountedProduct(DiscountedProduct DiscountedProduct) {
+    public void setProductInBasket(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
-                products[i] = DiscountedProduct;
-                break;
-            } else if (products.length - 1 == i && products[i] != null) {
-                System.out.println("Невозможно добавить продукт");
-            }
-        }
-
-    }
-
-
-    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = FixPriceProduct;
+                products[i] = product;
                 break;
             } else if (products.length - 1 == i && products[i] != null) {
                 System.out.println("Невозможно добавить продукт");
             }
         }
     }
-
-//    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
-//        for (int i = 0; i < products.length; i++) {
-//            if (products[i] == null) {
-//                products[i] = FixPriceProduct;
-//                break;
-//            } else if (products.length - 1 == i && products[i] != null) {
-//                System.out.println("Невозможно добавить продукт");
-//            }
-//        }
-//    }
 
 }

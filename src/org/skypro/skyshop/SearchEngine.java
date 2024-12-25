@@ -1,22 +1,18 @@
 package org.skypro.skyshop;
 
+import java.util.Arrays;
+
 public class SearchEngine {
     String name;
     String type;
     Integer arrLen = 5;
 
-    public SearchEngine(String name, String type) {
+    public void Searchable(String name, String type) {
         this.name = name;
         this.type = type;
     }
 
-    Searchable[] searchables = new Searchable();
-
-    // принимает в себя строку для поиска и возвращает 5 результатов поиска по массиву
-    //
-    //Searchable
-    //
-    //в виде массива из 5 элементов.
+    Searchable [] searchables = new Searchable[arrLen];
 
     public void setName(String word){
         this.name = word;
@@ -29,18 +25,18 @@ public class SearchEngine {
         return name;
     }
 
-    public String search(String word){
+    public void search(String word){
         String [] searchResult = new String[10];
         for (int i = 0; i < searchables.length; i++) {
             if (word.equalsIgnoreCase(searchables[i].toString())){
                 for (int j = 0; j < searchResult.length; j++) {
                     if (searchResult[i] == null){
-                        System.out.println(searchResult[i]);
+                        searchResult[i] = searchables[i].toString();
                     }
                 }
             }
         }
-        return null;
+        Arrays.toString(searchResult);
     }
 
     public void add(Searchable searchable){
@@ -50,4 +46,6 @@ public class SearchEngine {
             }
         }
     }
+
+
 }

@@ -15,11 +15,11 @@ public class App {
         ProductBasket products = new ProductBasket();
         SearchEngine searchEngine = new SearchEngine();
 
-        Product apple = new SimpleProduct("apple", 300);
-        Product orange = new SimpleProduct("orange", 250);
-        Product blueberry = new SimpleProduct("blueberry", 240);
-        Product mango = new DiscountedProduct("mango", 360, 5);
-        Product watermelon = new FixPriceProduct("watermelon");
+        Product apple = new SimpleProduct("Яблоки", 300);
+        Product orange = new SimpleProduct("Апельсины", 250);
+        Product blueberry = new SimpleProduct("Голубика", 240);
+        Product mango = new DiscountedProduct("Манго", 360, 5);
+        Product watermelon = new FixPriceProduct("Арбузы");
 
         products.setProductInBasket(apple);
         products.setProductInBasket(orange);
@@ -40,6 +40,7 @@ public class App {
 //        System.out.println(" -> Получение стоимости пустой корзины.");
 //        products.getAllCost();
 //        System.out.println(" -> Поиск товара по имени в пустой корзине.");
+
         searchEngine.addAll(apple, orange, blueberry, mango, watermelon);
         Article applesArticle = new Article(
                 "Статья о яблоках",
@@ -53,16 +54,16 @@ public class App {
         searchEngine.addAll(applesArticle, mangosArticle);
 
         String searchQuery1 = "Яблоки";
-        System.out.println("Поиск " + searchQuery1 + " " + Arrays.toString(searchEngine.search(searchQuery1)));
+        System.out.println("Поиск 1: " + searchQuery1 + " " + Arrays.toString(searchEngine.search(searchQuery1)));
 
         String searchQuery2 = "Личи";
-        System.out.println("Поиск " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
+        System.out.println("Поиск 2: " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
 
         String searchQuery3 = "Манго";
-        System.out.println("Поиск " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
+        System.out.println("Поиск 3: " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
 
-        String searchQuery4 = "blueberry";
-        System.out.println("Поиск " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
+        String searchQuery4 = "Голубика";
+        System.out.println("Поиск 4: " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
         System.out.println("----------------------\n");
     }
 }

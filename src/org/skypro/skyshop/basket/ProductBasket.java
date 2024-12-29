@@ -1,29 +1,11 @@
-package org.skypro.skyshop;
+package org.skypro.skyshop.basket;
 
-
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.Product;
 
 import java.util.Arrays;
 
 public class ProductBasket {
     private final Product[] products = new Product[5];
-
-    public int getArrSize(){
-        return products.length;
-    }
-
-    public void setProductInBasket(Product product) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                break;
-            } else if (products.length - 1 == i && products[i] != null) {
-                System.out.println("Невозможно добавить продукт");
-            }
-        }
-    }
-
 
     public void getAllCost() {
         Integer allCost = 0;
@@ -36,7 +18,6 @@ public class ProductBasket {
         }
         System.out.println("Итого: " + allCost);
     }
-
 
     public void printAllBasket() {
         int counter = 0;
@@ -81,39 +62,15 @@ public class ProductBasket {
         Arrays.fill(products, null);
     }
 
-    public void getDiscountedProduct(DiscountedProduct DiscountedProduct) {
+    public void setProductInBasket(Product product) {
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
-                products[i] = DiscountedProduct;
-                break;
-            } else if (products.length - 1 == i && products[i] != null) {
-                System.out.println("Невозможно добавить продукт");
-            }
-        }
-
-    }
-
-
-    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = FixPriceProduct;
+                products[i] = product;
                 break;
             } else if (products.length - 1 == i && products[i] != null) {
                 System.out.println("Невозможно добавить продукт");
             }
         }
     }
-
-//    public void getFixPriceProduct(FixPriceProduct FixPriceProduct) {
-//        for (int i = 0; i < products.length; i++) {
-//            if (products[i] == null) {
-//                products[i] = FixPriceProduct;
-//                break;
-//            } else if (products.length - 1 == i && products[i] != null) {
-//                System.out.println("Невозможно добавить продукт");
-//            }
-//        }
-//    }
 
 }

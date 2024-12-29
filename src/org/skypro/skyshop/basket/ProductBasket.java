@@ -1,17 +1,11 @@
-package org.skypro.skyshop;
+package org.skypro.skyshop.basket;
 
-
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.Product;
 
 import java.util.Arrays;
 
 public class ProductBasket {
     private final Product[] products = new Product[5];
-
-    public int getArrSize(){
-        return products.length;
-    }
 
     public void getAllCost() {
         Integer allCost = 0;
@@ -24,7 +18,6 @@ public class ProductBasket {
         }
         System.out.println("Итого: " + allCost);
     }
-
 
     public void printAllBasket() {
         int counter = 0;

@@ -1,7 +1,5 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.Product;
-
 public class SimpleProduct extends Product {
     private Integer productCost;
 //    private String productName;

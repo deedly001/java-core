@@ -1,4 +1,6 @@
-package org.skypro.skyshop;
+package org.skypro.skyshop.product;
+
+import org.skypro.skyshop.search.Searchable;
 
 public class Product implements Searchable {
     private String productName;
@@ -17,22 +19,29 @@ public class Product implements Searchable {
         this.productName = name;
     }
 
-    public String getProductType(){
+    public String getProductType() {
         return "PRODUCT";
     }
 
-    public String getSearchTerm(){
-        return "name: "+ getProductName() + " type: " + getProductType();
+    public String getSearchTerm() {
+        return "name: " + getProductName() + " type: " + getProductType();
     }
 
-    public Integer getPrice(){
+    @Override
+    public String getSearchContentType() {
+        return getProductType();
+    }
+
+    public Integer getPrice() {
         return null;
     }
 
-    public void setPrice(Integer cost){
-    };
+    public void setPrice(Integer cost) {
+    }
 
-    public boolean isSpecial(){
+    public boolean isSpecial() {
         return false;
-    };
+    }
+
+    ;
 }

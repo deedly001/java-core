@@ -51,18 +51,13 @@ public class App {
                 "Статья о Манго",
                 "Манго - это ... ."
         );
-
         searchEngine.addAll(applesArticle, mangosArticle);
-
         String searchQuery1 = "Яблоки";
         System.out.println("Поиск 1: " + searchQuery1 + " " + Arrays.toString(searchEngine.search(searchQuery1)));
-
         String searchQuery2 = "Личи";
         System.out.println("Поиск 2: " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
-
         String searchQuery3 = "lll";
         System.out.println("Поиск 3: " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
-
         String searchQuery4 = "Голубика";
         System.out.println("Поиск 4: " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
         System.out.println("----------------------\n");

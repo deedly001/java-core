@@ -31,7 +31,6 @@ public final class SearchEngine {
         return result;
     }
 
-
     public int countOccurrence(String str, String substr) {
         int count = 0;
         for (int i = 0; (i = str.indexOf(substr, i)) != -1; i += substr.length()) {
@@ -39,7 +38,6 @@ public final class SearchEngine {
         }
         return count;
     }
-
 
     public SearchEngine() {
         this.searchables = new Searchable[DEFAULT_SIZE];
@@ -82,5 +80,4 @@ public final class SearchEngine {
         }
         return NOT_FOUND;
     }
-
 }

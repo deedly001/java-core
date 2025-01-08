@@ -15,4 +15,5 @@ public class bestResultNotFound extends Exception {
     public bestResultNotFound(Throwable cause) {
         super(cause);
     }
+
 }

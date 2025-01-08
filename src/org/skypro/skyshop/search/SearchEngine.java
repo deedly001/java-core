@@ -1,5 +1,8 @@
 package org.skypro.skyshop.search;
 
+
+import org.skypro.skyshop.Exceptions.bestResultNotFound;
+
 public final class SearchEngine {
     private final Searchable[] searchables;
     private static final int MAX_SEARCH_RES = 5;
@@ -8,6 +11,32 @@ public final class SearchEngine {
 
     public SearchEngine(int size) {
         this.searchables = new Searchable[size];
+    }
+
+    public Searchable getMostSimilarElement(String query) throws bestResultNotFound {
+        int maxScore = 0;
+        Searchable result = null;
+        for (Searchable searchable : searchables) {
+            if (searchable != null) {
+                int score = countOccurrence(searchable.getSearchTerm(), query);
+                if (score > maxScore && searchable.getSearchTerm() != null) {
+                    maxScore = score;
+                    result = searchable;
+                }
+            }
+        }
+        if (result == null) {
+            throw new bestResultNotFound("Для поискового запроса не нашлось подходящего товара/статьи");
+        }
+        return result;
+    }
+
+    public int countOccurrence(String str, String substr) {
+        int count = 0;
+        for (int i = 0; (i = str.indexOf(substr, i)) != -1; i += substr.length()) {
+            count++;
+        }
+        return count;
     }
 
     public SearchEngine() {
@@ -37,7 +66,7 @@ public final class SearchEngine {
         searchables[freeIndex] = searchable;
     }
 
-    public void addAll(Searchable...searchables) {
+    public void addAll(Searchable... searchables) {
         for (Searchable searchable : searchables) {
             add(searchable);
         }
@@ -51,5 +80,4 @@ public final class SearchEngine {
         }
         return NOT_FOUND;
     }
-
 }

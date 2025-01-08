@@ -7,6 +7,17 @@ public class SimpleProduct extends Product {
     public SimpleProduct(String productName, Integer productCost) {
         super(productName);
         this.productCost = productCost;
+        checkCost(productCost);
+    }
+
+    private void checkCost(Integer productCost) throws IllegalArgumentException {
+        if (productCost != null) {
+            if (productCost < 1) {
+                throw new IllegalArgumentException(("Цена продукта: \"" + productCost + "\"" + " должна быть больше чем = 0"));
+            }
+        } else {
+            throw new NullPointerException(("Цена продукта не может быть = 'Null'"));
+        }
     }
 
     @Override

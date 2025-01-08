@@ -1,5 +1,6 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.Exceptions.bestResultNotFound;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
@@ -11,14 +12,14 @@ import org.skypro.skyshop.search.SearchEngine;
 import java.util.Arrays;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws bestResultNotFound {
         ProductBasket products = new ProductBasket();
         SearchEngine searchEngine = new SearchEngine();
 
         Product apple = new SimpleProduct("Яблоки", 300);
         Product orange = new SimpleProduct("Апельсины", 250);
-        Product blueberry = new SimpleProduct("Голубика", 240);
-        Product mango = new DiscountedProduct("Манго", 360, 5);
+        Product blueberry = new SimpleProduct("Голубика", 2400);
+        Product mango = new DiscountedProduct("Манго", 360, 50);
         Product watermelon = new FixPriceProduct("Арбузы");
 
         products.setProductInBasket(apple);
@@ -59,11 +60,13 @@ public class App {
         String searchQuery2 = "Личи";
         System.out.println("Поиск 2: " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
 
-        String searchQuery3 = "Манго";
+        String searchQuery3 = "lll";
         System.out.println("Поиск 3: " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
 
         String searchQuery4 = "Голубика";
         System.out.println("Поиск 4: " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
         System.out.println("----------------------\n");
+
+        System.out.println(searchEngine.getMostSimilarElement(searchQuery3));
     }
 }

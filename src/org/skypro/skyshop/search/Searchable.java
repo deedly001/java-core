@@ -6,6 +6,6 @@ public interface Searchable {
     String getSearchContentType();
 
     default String getStringRepresentation() {
-        return this.getClass().getSimpleName() + "-" + getSearchContentType();
+        return getSearchTerm() + "-" + getSearchContentType();
     }
 }

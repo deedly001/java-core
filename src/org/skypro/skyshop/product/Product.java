@@ -9,6 +9,7 @@ public class Product implements Searchable {
 
     public Product(String productName) {
         this.productName = productName;
+        checkName(productName);
     }
 
     public String getProductName() {
@@ -21,6 +22,16 @@ public class Product implements Searchable {
 
     public String getProductType() {
         return "PRODUCT";
+    }
+
+    private void checkName(String productName) throws IllegalArgumentException {
+        if (productName != null) {
+            if (productName.isBlank()) {
+                throw new IllegalArgumentException(("Наименование продукта: \"" + productName + "\"" + " указано неверно"));
+            }
+        } else {
+            throw new NullPointerException(("Наименование продукта не может быть = 'Null'"));
+        }
     }
 
     public String getSearchTerm() {

@@ -1,6 +1,5 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.Exceptions.bestResultNotFound;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
@@ -12,7 +11,7 @@ import org.skypro.skyshop.search.SearchEngine;
 import java.util.Arrays;
 
 public class App {
-    public static void main(String[] args) throws bestResultNotFound {
+    public static void main(String[] args) throws Exception {
         ProductBasket products = new ProductBasket();
         SearchEngine searchEngine = new SearchEngine();
 
@@ -56,12 +55,18 @@ public class App {
         System.out.println("Поиск 1: " + searchQuery1 + " " + Arrays.toString(searchEngine.search(searchQuery1)));
         String searchQuery2 = "Личи";
         System.out.println("Поиск 2: " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
-        String searchQuery3 = "lll";
+        String searchQuery3 = "Манго";
         System.out.println("Поиск 3: " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
-        String searchQuery4 = "Голубика";
+        String searchQuery4 = "null";
         System.out.println("Поиск 4: " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
         System.out.println("----------------------\n");
-
         System.out.println(searchEngine.getMostSimilarElement(searchQuery3));
+        try {
+            if(searchEngine.getMostSimilarElement(searchQuery4) == null){
+                throw new NullPointerException();
+            }
+        } catch (Exception nullPointerException){
+            System.out.println("Для поискового запроса не нашлось подходящего товара/статьи");
+        }
     }
 }

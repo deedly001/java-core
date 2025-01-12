@@ -19,14 +19,13 @@ public class App {
         Product orange = new SimpleProduct("Апельсины", 250);
         Product blueberry = new SimpleProduct("Голубика", 2400);
         Product mango = new DiscountedProduct("Манго", 360, 50);
-        Product watermelon = new FixPriceProduct("Арбузы");
+        Product watermelon = new FixPriceProduct("Яблоки");
 
         products.setProductInBasket(apple);
         products.setProductInBasket(orange);
         products.setProductInBasket(blueberry);
         products.setProductInBasket(mango);
         products.setProductInBasket(watermelon);
-
         products.printAllBasket();
 //        System.out.println(" -> Получение стоимости корзины с несколькими товарами.");
 //        products.getAllCost();
@@ -51,16 +50,18 @@ public class App {
                 "Манго - это ... ."
         );
         searchEngine.addAll(applesArticle, mangosArticle);
+        System.out.println("----------------------\n");
         String searchQuery1 = "Яблоки";
-        System.out.println("Поиск 1: " + searchQuery1 + " " + Arrays.toString(searchEngine.search(searchQuery1)));
+        System.out.println("Поиск 1: " + searchQuery1 + " " + searchEngine.search(searchQuery1));
         String searchQuery2 = "Личи";
-        System.out.println("Поиск 2: " + searchQuery2 + " " + Arrays.toString(searchEngine.search(searchQuery2)));
+        System.out.println("Поиск 2: " + searchQuery2 + " " + searchEngine.search(searchQuery2));
         String searchQuery3 = "Манго";
-        System.out.println("Поиск 3: " + searchQuery3 + " " + Arrays.toString(searchEngine.search(searchQuery3)));
+        System.out.println("Поиск 3: " + searchQuery3 + " " + searchEngine.search(searchQuery3));
         String searchQuery4 = "null";
-        System.out.println("Поиск 4: " + searchQuery4 + " " + Arrays.toString(searchEngine.search(searchQuery4)));
+        System.out.println("Поиск 4: " + searchQuery4 + " " + searchEngine.search(searchQuery4));
         System.out.println("----------------------\n");
         System.out.println(searchEngine.getMostSimilarElement(searchQuery3));
+        System.out.println("----------------------\n");
         try {
             if(searchEngine.getMostSimilarElement(searchQuery4) == null){
                 throw new NullPointerException();
@@ -68,5 +69,12 @@ public class App {
         } catch (Exception nullPointerException){
             System.out.println("Для поискового запроса не нашлось подходящего товара/статьи");
         }
+        System.out.println("----------------------\n");
+        products.removeProductFromBasket("Яблоки");
+        System.out.println("----------------------\n");
+        products.printAllBasket();
+        System.out.println("----------------------\n");
+        System.out.println("Поиск 1: " + searchQuery1 + " " + searchEngine.search(searchQuery1));
+        System.out.println("----------------------\n");
     }
 }

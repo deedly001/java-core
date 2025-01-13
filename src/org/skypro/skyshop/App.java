@@ -62,11 +62,7 @@ public class App {
         System.out.println("----------------------\n");
         System.out.println(searchEngine.getMostSimilarElement(searchQuery3));
         System.out.println("----------------------\n");
-        try {
-            if(searchEngine.getMostSimilarElement(searchQuery4) == null){
-                throw new NullPointerException();
-            }
-        } catch (Exception nullPointerException){
+        if(searchEngine.getMostSimilarElement(searchQuery4) == null){
             System.out.println("Для поискового запроса не нашлось подходящего товара/статьи");
         }
         System.out.println("----------------------\n");

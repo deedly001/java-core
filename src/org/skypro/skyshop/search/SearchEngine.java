@@ -1,8 +1,9 @@
 package org.skypro.skyshop.search;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
+
 
 public final class SearchEngine {
     private final List<Searchable> searchItems = new ArrayList<>();
@@ -33,9 +34,7 @@ public final class SearchEngine {
 
     public List<Searchable> search(String query) {
         List<Searchable> res = new ArrayList<>();
-        Iterator<Searchable> iterator = searchItems.iterator();
-        while (iterator.hasNext()) {
-            Searchable element = iterator.next();
+        for (Searchable element : searchItems) {
             if (element.getSearchTerm().contains(query)) {
                 res.add(element);
             }
@@ -48,9 +47,7 @@ public final class SearchEngine {
     }
 
     public void addAll(Searchable... searchables) {
-        for (Searchable searchable : searchables) {
-            searchItems.add(searchable);
-        }
+        searchItems.addAll(Arrays.asList(searchables));
     }
 
 }

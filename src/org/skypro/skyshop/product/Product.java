@@ -16,6 +16,7 @@ public class Product implements Searchable {
         return productName;
     }
 
+
     public void setProductName(String name) {
         this.productName = name;
     }

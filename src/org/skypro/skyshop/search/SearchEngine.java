@@ -1,22 +1,24 @@
 package org.skypro.skyshop.search;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
 public final class SearchEngine {
-    private final List<Searchable> searchItems = new ArrayList<>();
+    private final HashMap<String, List<Searchable>> searchItems = new HashMap<>();
 
 
-    public Searchable getMostSimilarElement(String query) throws Exception {
+    public Searchable getMostSimilarElement(String query) {
         int maxScore = 0;
         Searchable result = null;
-        for (Searchable searchable : searchItems) {
-            int score = countOccurrence(searchable.getSearchTerm(), query);
-            if (score > maxScore && searchable.getSearchTerm() != null) {
-                maxScore = score;
-                result = searchable;
+        for (List<Searchable> searchablesList : searchItems.values()) {
+            for (Searchable searchable : searchablesList) {
+                int score = countOccurrence(searchable.getSearchTerm(), query);
+                if (score > maxScore && searchable.getSearchTerm() != null) {
+                    maxScore = score;
+                    result = searchable;
+                }
             }
         }
         return result;
@@ -34,20 +36,23 @@ public final class SearchEngine {
 
     public List<Searchable> search(String query) {
         List<Searchable> res = new ArrayList<>();
-        for (Searchable element : searchItems) {
-            if (element.getSearchTerm().contains(query)) {
-                res.add(element);
+        for (List<Searchable> searchablesList : searchItems.values()) {
+            for (Searchable searchable : searchablesList) {
+                if (searchable.getSearchTerm().contains(query)) {
+                    res.add(searchable);
+                }
             }
         }
         return res;
     }
 
     public void addSearchable(Searchable searchable) {
-        searchItems.add(searchable);
+        searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new ArrayList<>()).add(searchable);
     }
 
     public void addAll(Searchable... searchables) {
-        searchItems.addAll(Arrays.asList(searchables));
+        for (Searchable searchable : searchables) {
+            searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new ArrayList<>()).add(searchable);
+        }
     }
-
 }

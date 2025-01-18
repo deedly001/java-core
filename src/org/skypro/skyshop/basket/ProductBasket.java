@@ -5,15 +5,13 @@ import org.skypro.skyshop.product.Product;
 import java.util.*;
 
 public class ProductBasket {
-    private final List<Product> products = new ArrayList<>(5);
+    private final HashMap<String, Product> products = new HashMap<>();
 
     public void getAllCost() {
         Integer allCost = 0;
-        for (Product product : products) {
-            if (product != null) {
-                if (product.getPrice() != null) {
-                    allCost += product.getPrice();
-                }
+        for (Map.Entry<String, Product> tempArray : products.entrySet()) {
+            if (tempArray.getKey() != null && tempArray.getValue() != null) {
+                allCost += tempArray.getValue().getPrice();
             }
         }
         System.out.println("Итого: " + allCost);
@@ -22,10 +20,10 @@ public class ProductBasket {
     public void printAllBasket() {
         int counter = 0;
         int specialCounter = 0;
-        for (Product product : products) {
-            if (product != null) {
-                System.out.println(product);
-                if (product.isSpecial()) {
+        for (Map.Entry<String, Product> tempArray : products.entrySet()) {
+            if (tempArray.getKey() != null && tempArray.getValue() != null) {
+                System.out.println(tempArray.getValue());
+                if (tempArray.getValue().isSpecial()) {
                     specialCounter++;
                 }
             } else {
@@ -46,25 +44,36 @@ public class ProductBasket {
         products.clear();
     }
 
-    public void setProductInBasket(Product product) {
-        products.add(product);
-    }
-
     public void removeProductFromBasket(String name) {
-        List<String> deletedProducts = new ArrayList<>();
-        Iterator<Product> iterator = products.iterator();
+        List<Object> deletedProducts = new ArrayList<>();
         System.out.println("Удаляем продукт: " + name);
+        Iterator<Map.Entry<String, Product>> iterator = products.entrySet().iterator();
         while (iterator.hasNext()) {
-            Product element = iterator.next();
-            if (Objects.equals(element.getProductName(), name)) {
-                deletedProducts.add(String.valueOf(element));
+            Map.Entry<String, Product> entry = iterator.next();
+            if (entry.getKey().equals(name)) {
                 iterator.remove();
+                deletedProducts.add(entry.getKey());
             }
         }
         if (deletedProducts.isEmpty()) {
-            System.out.println("Список пуст");
+            System.out.print("Список пуст \n");
         } else {
             System.out.println("Продукты которые были удалены: " + deletedProducts);
         }
     }
+
+
+    public void setProductInBasket(Product product) {
+        products.put(product.getProductName(), product);
+    }
+
+    public boolean checkProductInBasket(String name) {
+        for (Product product : products.values()) {
+            if (product != null && name.equals(product.getProductName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

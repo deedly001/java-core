@@ -7,19 +7,20 @@ import java.util.*;
 public class ProductBasket {
     private final HashMap<String, Product> products = new HashMap<>();
 
-    public void getAllCost() {
-        Integer allCost = 0;
+    public float getAllCost() {
+        float allCoast = 0;
         for (Map.Entry<String, Product> tempArray : products.entrySet()) {
             if (tempArray.getKey() != null && tempArray.getValue() != null) {
-                allCost += tempArray.getValue().getPrice();
+                allCoast += tempArray.getValue().getPrice();
             }
         }
-        System.out.println("Итого: " + allCost);
+        return allCoast;
     }
 
     public void printAllBasket() {
         int counter = 0;
         int specialCounter = 0;
+        float allCoast = getAllCost();
         for (Map.Entry<String, Product> tempArray : products.entrySet()) {
             if (tempArray.getKey() != null && tempArray.getValue() != null) {
                 System.out.println(tempArray.getValue());
@@ -33,7 +34,7 @@ public class ProductBasket {
         if (counter == products.size()) {
             System.out.println("в корзине пусто");
         } else {
-            getAllCost();
+            System.out.println("Итого: " + allCoast);
         }
         if (specialCounter != 0) {
             System.out.println("Специальных товаров: " + specialCounter);
@@ -45,7 +46,7 @@ public class ProductBasket {
     }
 
     public void removeProductFromBasket(String name) {
-        List<Object> deletedProducts = new ArrayList<>();
+        List<String> deletedProducts = new ArrayList<>();
         System.out.println("Удаляем продукт: " + name);
         Iterator<Map.Entry<String, Product>> iterator = products.entrySet().iterator();
         while (iterator.hasNext()) {

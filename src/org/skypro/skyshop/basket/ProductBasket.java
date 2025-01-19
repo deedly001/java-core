@@ -7,7 +7,7 @@ import java.util.*;
 public class ProductBasket {
     private final HashMap<String, Product> products = new HashMap<>();
 
-    public float getAllCost() {
+    public double getAllCost() {
         float allCoast = 0;
         for (Map.Entry<String, Product> tempArray : products.entrySet()) {
             if (tempArray.getKey() != null && tempArray.getValue() != null) {
@@ -20,7 +20,7 @@ public class ProductBasket {
     public void printAllBasket() {
         int counter = 0;
         int specialCounter = 0;
-        float allCoast = getAllCost();
+        double allCoast = getAllCost();
         for (Map.Entry<String, Product> tempArray : products.entrySet()) {
             if (tempArray.getKey() != null && tempArray.getValue() != null) {
                 System.out.println(tempArray.getValue());

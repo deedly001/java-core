@@ -14,7 +14,7 @@ public final class SearchEngine {
         Searchable result = null;
         for (List<Searchable> searchablesList : searchItems.values()) {
             for (Searchable searchable : searchablesList) {
-                int score = countOccurrence(searchable.getSearchTerm(), query);
+                int score = countOccurrences(searchable, query);
                 if (score > maxScore && searchable.getSearchTerm() != null) {
                     maxScore = score;
                     result = searchable;
@@ -24,10 +24,13 @@ public final class SearchEngine {
         return result;
     }
 
-    public int countOccurrence(String str, String substr) {
+    public int countOccurrences(Searchable searchable, String substr) {
+        String searchableText = searchable.getSearchTerm();
         int count = 0;
-        if (str != null && substr != null) {
-            for (int i = 0; (i = str.indexOf(substr, i)) != -1; i += substr.length()) {
+        if (searchableText == null || searchableText.isEmpty() || substr == null || substr.isEmpty()) {
+            return 0;
+        } else {
+            for (int i = 0; (i = searchableText.indexOf(substr, i)) != -1; i += substr.length()) {
                 count++;
             }
         }

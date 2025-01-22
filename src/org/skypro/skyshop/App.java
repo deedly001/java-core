@@ -8,8 +8,6 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 
-import java.util.Arrays;
-
 public class App {
     public static void main(String[] args) throws Exception {
         ProductBasket products = new ProductBasket();
@@ -45,10 +43,18 @@ public class App {
                 "Яблоки - это ... ."
         );
         Article mangosArticle = new Article(
-                "Статья о Манго",
-                "Манго - это ... ."
+                "Статья о Манго(самое короткое назв.)",
+                "Манго - это статья 1 ."
         );
-        searchEngine.addAll(apple, orange, blueberry, mango, watermelon, applesArticle, mangosArticle);
+        Article mangosArticle2 = new Article(
+                "Статья о Манго (самое длинное название)",
+                "Манго - это статья 2 ... ."
+        );
+        Article mangosArticle3 = new Article(
+                "Статья о Манго (самое обычное назван.)",
+                "Манго - это ..,. ."
+        );
+        searchEngine.addAll(apple, orange, blueberry, mango, watermelon, applesArticle, mangosArticle, mangosArticle2, mangosArticle3);
 //        searchEngine.addSearchable(applesArticle);
 //        searchEngine.addSearchable(mangosArticle);
 //        searchEngine.addSearchable(apple);

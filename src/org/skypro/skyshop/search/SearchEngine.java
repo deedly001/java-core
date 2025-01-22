@@ -1,18 +1,15 @@
 package org.skypro.skyshop.search;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 public final class SearchEngine {
-    private final HashMap<String, List<Searchable>> searchItems = new HashMap<>();
-
+    private final HashMap<String, Set<Searchable>> searchItems = new HashMap<>();
 
     public Searchable getMostSimilarElement(String query) {
         int maxScore = 0;
         Searchable result = null;
-        for (List<Searchable> searchablesList : searchItems.values()) {
+        for (Set<Searchable> searchablesList : searchItems.values()) {
             for (Searchable searchable : searchablesList) {
                 int score = countOccurrences(searchable, query);
                 if (score > maxScore && searchable.getSearchTerm() != null) {
@@ -37,9 +34,9 @@ public final class SearchEngine {
         return count;
     }
 
-    public List<Searchable> search(String query) {
-        List<Searchable> res = new ArrayList<>();
-        for (List<Searchable> searchablesList : searchItems.values()) {
+    public Set<Searchable> search(String query) {
+        Set<Searchable> res = new TreeSet<>(new mostLongestNameComparator());
+        for (Set<Searchable> searchablesList : searchItems.values()) {
             for (Searchable searchable : searchablesList) {
                 if (searchable.getSearchTerm().contains(query)) {
                     res.add(searchable);
@@ -48,14 +45,35 @@ public final class SearchEngine {
         }
         return res;
     }
+    public static class mostLongestNameComparator implements Comparator<Searchable> {
+        @Override
+        public int compare(Searchable s1, Searchable s2) {
+            return CharSequence.compare(s1.getSearchTerm(), s2.getSearchTerm());
+        }
+    }
+
 
     public void addSearchable(Searchable searchable) {
-        searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new ArrayList<>()).add(searchable);
+        searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new HashSet<>()).add(searchable);
     }
 
     public void addAll(Searchable... searchables) {
         for (Searchable searchable : searchables) {
-            searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new ArrayList<>()).add(searchable);
+            searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new HashSet<>()).add(searchable);
         }
     }
-}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SearchEngine that = (SearchEngine) o;
+        return Objects.equals(searchItems, that.searchItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(searchItems);
+    }
+
+    }

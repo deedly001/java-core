@@ -35,7 +35,7 @@ public final class SearchEngine {
     }
 
     public Set<Searchable> search(String query) {
-        Set<Searchable> res = new TreeSet<>(new mostLongestNameComparator());
+        Set<Searchable> res = new TreeSet<>(new MostLongestNameComparator());
         for (Set<Searchable> searchablesList : searchItems.values()) {
             for (Searchable searchable : searchablesList) {
                 if (searchable.getSearchTerm().contains(query)) {
@@ -45,13 +45,19 @@ public final class SearchEngine {
         }
         return res;
     }
-    public static class mostLongestNameComparator implements Comparator<Searchable> {
-        @Override
+
+    public static class MostLongestNameComparator implements Comparator<Searchable> {
         public int compare(Searchable s1, Searchable s2) {
-            return CharSequence.compare(s1.getSearchTerm(), s2.getSearchTerm());
+            int res = Integer.compare(s2.getSearchTerm().length(), s1.getSearchTerm().length());
+            if (res != 0) {
+                return res;
+            } else {
+                Integer firstLen = Integer.parseInt(String.valueOf(s1.getSearchTerm().length()));
+                Integer secLen = Integer.parseInt(String.valueOf(s2.getSearchTerm().length()));
+                return secLen.compareTo(firstLen);
+            }
         }
     }
-
 
     public void addSearchable(Searchable searchable) {
         searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new HashSet<>()).add(searchable);
@@ -76,4 +82,4 @@ public final class SearchEngine {
         return Objects.hashCode(searchItems);
     }
 
-    }
+}

@@ -43,16 +43,16 @@ public class App {
                 "Яблоки - это ... ."
         );
         Article mangosArticle = new Article(
-                "Статья о Манго(самое короткое назв.)",
-                "Манго - это статья 1 ."
+                "Манго 1 (самое длинное название)",
+                "самая длинная статья."
         );
         Article mangosArticle2 = new Article(
-                "Статья о Манго (самое длинное название)",
-                "Манго - это статья 2 ... ."
+                "Статья о Манго 2 (среднее. назв)",
+                "сред. длн. стат."
         );
         Article mangosArticle3 = new Article(
-                "Статья о Манго (самое обычное назван.)",
-                "Манго - это ..,. ."
+                "Статья о Манго 3 (кор. назв)",
+                "кор. стат."
         );
         searchEngine.addAll(apple, orange, blueberry, mango, watermelon, applesArticle, mangosArticle, mangosArticle2, mangosArticle3);
 //        searchEngine.addSearchable(applesArticle);

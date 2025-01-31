@@ -1,22 +1,38 @@
 package org.skypro.skyshop.search;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public final class SearchEngine {
-    private final HashMap<String, Set<Searchable>> searchItems = new HashMap<>();
+    private Set<Searchable> searchItems = new HashSet<>();
+
+
+    public void addSearchable(Searchable searchable) {
+        searchItems.add(searchable);
+    }
+
+    public void addAll(Searchable... searchables) {
+        searchItems.addAll(Arrays.asList(searchables));
+    }
+
+    public Set<Searchable> search(String query) {
+        Set<Searchable> res = new TreeSet<>(new MostLongestNameComparator());
+        searchItems.stream()
+                .filter(searchable -> searchable.getSearchTerm().contains(query))
+                .collect(Collectors.toCollection(() -> res));
+        return res;
+    }
 
     public Searchable getMostSimilarElement(String query) {
         int maxScore = 0;
         Searchable result = null;
-        for (Set<Searchable> searchablesList : searchItems.values()) {
-            for (Searchable searchable : searchablesList) {
+            for (Searchable searchable : searchItems) {
                 int score = countOccurrences(searchable, query);
                 if (score > maxScore && searchable.getSearchTerm() != null) {
                     maxScore = score;
                     result = searchable;
                 }
-            }
         }
         return result;
     }
@@ -34,18 +50,6 @@ public final class SearchEngine {
         return count;
     }
 
-    public Set<Searchable> search(String query) {
-        Set<Searchable> res = new TreeSet<>(new MostLongestNameComparator());
-        for (Set<Searchable> searchablesList : searchItems.values()) {
-            for (Searchable searchable : searchablesList) {
-                if (searchable.getSearchTerm().contains(query)) {
-                    res.add(searchable);
-                }
-            }
-        }
-        return res;
-    }
-
     public static class MostLongestNameComparator implements Comparator<Searchable> {
         public int compare(Searchable s1, Searchable s2) {
             int res = Integer.compare(s2.getSearchTerm().length(), s1.getSearchTerm().length());
@@ -56,16 +60,6 @@ public final class SearchEngine {
                 Integer secLen = Integer.parseInt(String.valueOf(s2.getSearchTerm().length()));
                 return secLen.compareTo(firstLen);
             }
-        }
-    }
-
-    public void addSearchable(Searchable searchable) {
-        searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new HashSet<>()).add(searchable);
-    }
-
-    public void addAll(Searchable... searchables) {
-        for (Searchable searchable : searchables) {
-            searchItems.computeIfAbsent(searchable.getSearchTerm(), _ -> new HashSet<>()).add(searchable);
         }
     }
 

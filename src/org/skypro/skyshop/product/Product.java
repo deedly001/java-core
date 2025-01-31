@@ -2,6 +2,8 @@ package org.skypro.skyshop.product;
 
 import org.skypro.skyshop.search.Searchable;
 
+import java.util.stream.Stream;
+
 public class Product implements Searchable {
     private String productName;
     private Integer discountPrice;
@@ -51,9 +53,12 @@ public class Product implements Searchable {
     public void setPrice(Integer cost) {
     }
 
+    public Stream<?> stream() {
+        return Stream.empty();
+    }
+
     public boolean isSpecial() {
         return false;
     }
 
-    ;
 }

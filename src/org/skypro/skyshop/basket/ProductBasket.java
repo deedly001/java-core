@@ -3,41 +3,34 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductBasket {
     private final HashMap<String, Product> products = new HashMap<>();
 
     public double getAllCost() {
-        float allCoast = 0;
-        for (Map.Entry<String, Product> tempArray : products.entrySet()) {
-            if (tempArray.getKey() != null && tempArray.getValue() != null) {
-                allCoast += tempArray.getValue().getPrice();
-            }
-        }
-        return allCoast;
+        return products.values().stream()
+                .mapToInt(Product::getPrice)
+                .sum();
+    }
+
+    public long getSpecialCount() {
+        return products.values().stream()
+                .filter(Product::isSpecial)
+                .count();
     }
 
     public void printAllBasket() {
-        int counter = 0;
-        int specialCounter = 0;
+        long specialCounter = getSpecialCount();
         double allCoast = getAllCost();
-        for (Map.Entry<String, Product> tempArray : products.entrySet()) {
-            if (tempArray.getKey() != null && tempArray.getValue() != null) {
-                System.out.println(tempArray.getValue());
-                if (tempArray.getValue().isSpecial()) {
-                    specialCounter++;
-                }
-            } else {
-                counter++;
-            }
-        }
-        if (counter == products.size()) {
-            System.out.println("в корзине пусто");
-        } else {
+        if (!products.isEmpty()) {
+            products.forEach((product, quantity) -> System.out.println(quantity));
             System.out.println("Итого: " + allCoast);
-        }
-        if (specialCounter != 0) {
-            System.out.println("Специальных товаров: " + specialCounter);
+            if (specialCounter != 0) {
+                System.out.println("Специальных товаров: " + specialCounter);
+            }
+        } else{
+            System.out.println("Корзина пуста!");
         }
     }
 

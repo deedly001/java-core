@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/org/article" />
+      <excludeFolder url="file://$MODULE_DIR$/org/basket" />
+      <excludeFolder url="file://$MODULE_DIR$/org/product" />
+      <excludeFolder url="file://$MODULE_DIR$/org/search" />
+    </content>
+  </component>
+</module>

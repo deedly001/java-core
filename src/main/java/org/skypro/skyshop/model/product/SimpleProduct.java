@@ -1,12 +1,16 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model.product;
+
+import java.util.UUID;
 
 public class SimpleProduct extends Product {
     private Integer productCost;
-//    private String productName;
+    private final UUID id;
 
-    public SimpleProduct(String productName, Integer productCost) {
-        super(productName);
+
+    public SimpleProduct(String productName, Integer productCost, UUID id) {
+        super(productName, id);
         this.productCost = productCost;
+        this.id = id;
         checkCost(productCost);
     }
 
@@ -35,9 +39,18 @@ public class SimpleProduct extends Product {
     }
 
     @Override
+    public UUID getID() {
+        return id;
+    }
+
+    @Override
     public String toString() {
         return getProductName() + " : " + getPrice();
     }
 
+    @Override
+    public UUID getId() {
+        return id;
+    }
 
 }

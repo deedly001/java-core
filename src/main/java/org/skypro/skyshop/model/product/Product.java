@@ -1,16 +1,18 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model.product;
 
-import org.skypro.skyshop.search.Searchable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.skypro.skyshop.model.search.Searchable;
 
+import java.util.UUID;
 import java.util.stream.Stream;
 
-public class Product implements Searchable {
+public abstract class Product implements Searchable {
     private String productName;
-    private Integer discountPrice;
-    public boolean isSpecial;
+    final UUID id;
 
-    public Product(String productName) {
+    public Product(String productName, UUID id) {
         this.productName = productName;
+        this.id = id;
         checkName(productName);
     }
 
@@ -37,13 +39,20 @@ public class Product implements Searchable {
         }
     }
 
+    @JsonIgnore
     public String getSearchTerm() {
         return "name: " + getProductName() + " type: " + getProductType();
     }
 
+    @JsonIgnore
     @Override
     public String getSearchContentType() {
         return getProductType();
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
     }
 
     public Integer getPrice() {
@@ -61,4 +70,5 @@ public class Product implements Searchable {
         return false;
     }
 
+    public abstract UUID getID();
 }

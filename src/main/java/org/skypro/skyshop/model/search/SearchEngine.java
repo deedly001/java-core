@@ -1,4 +1,4 @@
-package org.skypro.skyshop.search;
+package org.skypro.skyshop.model.search;
 
 import java.util.*;
 import java.util.stream.Collectors;

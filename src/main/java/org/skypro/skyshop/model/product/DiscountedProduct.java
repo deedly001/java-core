@@ -1,11 +1,12 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model.product;
+import java.util.UUID;
 
 public class DiscountedProduct extends Product {
     private Integer basePrice;
     private final Integer discountPrice;
 
-    public DiscountedProduct(String productName, Integer productCost, Integer discountPrice) {
-        super(productName);
+    public DiscountedProduct(String productName, Integer productCost, Integer discountPrice, UUID id) {
+        super(productName, id);
         this.basePrice = productCost;
         checkBasePrice(basePrice);
         this.discountPrice = discountPrice;
@@ -56,5 +57,10 @@ public class DiscountedProduct extends Product {
     @Override
     public String toString() {
         return getProductName() + " : " + getPrice() + " (скидка " + getDiscountPrice() + "%)";
+    }
+
+    @Override
+    public UUID getID() {
+        return this.id;
     }
 }

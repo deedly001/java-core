@@ -1,8 +1,6 @@
 package org.skypro.skyshop.service;
 
 
-import org.skypro.skyshop.model.search.Searchable;
-
 import java.util.UUID;
 
 public final class SearchResult {
@@ -17,11 +15,7 @@ public final class SearchResult {
         this.contentType = contentType;
     }
 
-    public static SearchResult fromSearchable(Searchable searchable) {
-        return new SearchResult(searchable.getId(),
-                searchable.getSearchTerm(), searchable.getSearchContentType());
-    }
-
+    
 
     @Override
     public boolean equals(Object obj) {

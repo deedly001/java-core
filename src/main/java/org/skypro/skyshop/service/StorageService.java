@@ -14,16 +14,17 @@ import java.util.*;
 
 @Service
 public class StorageService {
-    private final HashMap<UUID, Product> productStorage;
-    private final HashMap<UUID, Article> articleStorage;
+    private final Map<UUID, Product> productStorage;
+    private final Map<UUID, Article> articleStorage;
 
-    ;
-    public StorageService(HashMap<UUID, Product> products, HashMap<UUID, Article> articles) {
+
+    public StorageService(Map<UUID, Product> products, Map<UUID, Article> articles) {
         this.productStorage = products;
         this.articleStorage = articles;
         getAllProducts();
         getAllArticles();
     }
+
 
     private void getAllProducts() {
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Яблоки", 300, UUID.randomUUID()));

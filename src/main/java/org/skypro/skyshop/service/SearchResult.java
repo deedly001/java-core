@@ -14,22 +14,4 @@ public final class SearchResult {
         this.name = name;
         this.contentType = contentType;
     }
-
-    
-
-    @Override
-    public boolean equals(Object obj) {
-
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof SearchResult)) {
-            return false;
-        }
-        SearchResult other = (SearchResult) obj;
-        if (!this.name.equals(other.name)) {
-            return false;
-        }
-        return true;
-    }
 }

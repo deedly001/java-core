@@ -1,40 +1,40 @@
-package main.skyshop.model.service;
+package org.skypro.skyshop.service;
 
-import main.skyshop.model.article.Article;
-import main.skyshop.model.product.DiscountedProduct;
-import main.skyshop.model.product.FixPriceProduct;
-import main.skyshop.model.product.Product;
-import main.skyshop.model.product.SimpleProduct;
-import main.skyshop.model.search.Searchable;
+import org.skypro.skyshop.model.article.Article;
+import org.skypro.skyshop.model.product.DiscountedProduct;
+import org.skypro.skyshop.model.product.FixPriceProduct;
+import org.skypro.skyshop.model.product.Product;
+import org.skypro.skyshop.model.product.SimpleProduct;
+import org.skypro.skyshop.model.search.Searchable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+
 
 @Service
 public class StorageService {
-    private final Map<UUID, Product> productStorage;
-    private final Map<UUID, Article> articleStorage;
+    private final HashMap<UUID, Product> productStorage;
+    private final HashMap<UUID, Article> articleStorage;
 
-
-    public StorageService(Map<UUID, Product> productStorage, Map<UUID, Article> articleStorage) {
-        this.productStorage = new HashMap<>();
-        addProducts();
-        this.articleStorage = new HashMap<>();
-        addArticle();
+    ;
+    public StorageService(HashMap<UUID, Product> products, HashMap<UUID, Article> articles) {
+        this.productStorage = products;
+        this.articleStorage = articles;
+        getAllProducts();
+        getAllArticles();
     }
 
-    private void addProducts() {
+    private void getAllProducts() {
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Яблоки", 300, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Апельсины", 250, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Голубика", 2400, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new DiscountedProduct("Манго", 360, 50, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new FixPriceProduct("Абрикосы", UUID.randomUUID()));
-
+        System.out.println(productStorage);
     }
 
-    private void addArticle() {
+    private void getAllArticles() {
         articleStorage.put(UUID.randomUUID(), new Article("Яблоки", "это яблоки", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Манго", "это манго", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Абрикосы", "это оно", UUID.randomUUID()));
@@ -45,10 +45,10 @@ public class StorageService {
     }
 
     public Collection<Article> getStorageOfArticle() {
-        return articleStorage.values();
+        return new ArrayList<>(articleStorage.values());
     }
 
-    public Map<UUID, Searchable> getSearchables() {
+    public Map<UUID, Searchable> getAllSearchables() {
         Map<UUID, Searchable> collectionOfSearchables = new HashMap<>();
         collectionOfSearchables.putAll(productStorage);
         collectionOfSearchables.putAll(articleStorage);

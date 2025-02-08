@@ -23,6 +23,7 @@ public class StorageService {
         this.articleStorage = articles;
         getAllProducts();
         getAllArticles();
+        testerPr();
     }
 
 
@@ -32,13 +33,18 @@ public class StorageService {
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Голубика", 2400, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new DiscountedProduct("Манго", 360, 50, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new FixPriceProduct("Абрикосы", UUID.randomUUID()));
-        System.out.println(productStorage);
+        System.out.println(productStorage.values());
     }
 
     private void getAllArticles() {
         articleStorage.put(UUID.randomUUID(), new Article("Яблоки", "это яблоки", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Манго", "это манго", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Абрикосы", "это оно", UUID.randomUUID()));
+    }
+
+    public void testerPr(){
+        System.out.println(" tester" + productStorage.values());
+        System.out.println(" tester" + articleStorage.values());
     }
 
     public Collection<Product> getStorageOfProducts() {
@@ -55,5 +61,7 @@ public class StorageService {
         collectionOfSearchables.putAll(articleStorage);
         return collectionOfSearchables;
     }
+
+
 
 }

@@ -33,8 +33,8 @@ public class ShopController {
         return storageService.getStorageOfArticle();
     }
 
-//    @GetMapping("/search")
-//    public Collection<SearchResult> searchResults(@RequestParam String pattern) {
-//        return searchService.search(pattern);
-//    }
+    @GetMapping("/search")
+    public Collection<SearchResult> searchResults(@RequestParam String pattern) {
+        return searchService.search(pattern);
+    }
 }

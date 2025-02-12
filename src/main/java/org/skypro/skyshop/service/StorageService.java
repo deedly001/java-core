@@ -18,12 +18,11 @@ public class StorageService {
     private final Map<UUID, Article> articleStorage;
 
 
-    public StorageService(Map<UUID, Product> products, Map<UUID, Article> articles) {
-        this.productStorage = products;
-        this.articleStorage = articles;
-        getAllProducts();
-        getAllArticles();
-        testerPr();
+    public StorageService() {
+        this.productStorage = new HashMap<>();
+        this.articleStorage = new HashMap<>();
+        this.getAllProducts();
+        this.getAllArticles();
     }
 
 

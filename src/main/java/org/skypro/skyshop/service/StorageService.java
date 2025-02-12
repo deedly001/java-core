@@ -6,10 +6,12 @@ import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 @Service
@@ -17,13 +19,11 @@ public class StorageService {
     private final Map<UUID, Product> productStorage;
     private final Map<UUID, Article> articleStorage;
 
-
     public StorageService() {
         this.productStorage = new HashMap<>();
         this.articleStorage = new HashMap<>();
         this.getAllItems();
     }
-
 
     private void getAllItems() {
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Яблоки", 300, UUID.randomUUID()));
@@ -45,12 +45,10 @@ public class StorageService {
     }
 
     public Map<UUID, Searchable> getAllSearchables() {
-        Map<UUID, Searchable> allSearchables = new HashMap<>();
-        allSearchables.putAll(productStorage);
-        allSearchables.putAll(articleStorage);
-        return allSearchables;
+        Map<UUID, Searchable> allSearchable = new HashMap<>();
+        allSearchable.putAll(productStorage);
+        allSearchable.putAll(articleStorage);
+        return allSearchable;
     }
-
-
 
 }

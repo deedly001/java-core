@@ -24,13 +24,12 @@ public class ShopController {
     }
 
     @GetMapping("/products")
-    public Collection<Product> getAllProducts() {
+    public Collection<Product> getProducts() {
         return storageService.getStorageOfProducts();
     }
 
     @GetMapping("/articles")
-    public Collection<Article> getAllArticles() {
-        System.out.println(storageService);
+    public Collection<Article> getArticles() {
         return storageService.getStorageOfArticle();
     }
 

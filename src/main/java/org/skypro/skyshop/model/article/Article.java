@@ -2,7 +2,6 @@ package org.skypro.skyshop.model.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.skypro.skyshop.model.search.Searchable;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
@@ -18,17 +17,9 @@ public final class Article implements Searchable {
 
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     @Override
     public String toString() {
         return title + "\n" + content;
-    }
-
-    public String getArticleName() {
-        return this.title;
     }
 
     public String getArticleType() {

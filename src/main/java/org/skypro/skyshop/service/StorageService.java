@@ -21,29 +21,19 @@ public class StorageService {
     public StorageService() {
         this.productStorage = new HashMap<>();
         this.articleStorage = new HashMap<>();
-        this.getAllProducts();
-        this.getAllArticles();
+        this.getAllItems();
     }
 
 
-    private void getAllProducts() {
+    private void getAllItems() {
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Яблоки", 300, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Апельсины", 250, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new SimpleProduct("Голубика", 2400, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new DiscountedProduct("Манго", 360, 50, UUID.randomUUID()));
         productStorage.put(UUID.randomUUID(), new FixPriceProduct("Абрикосы", UUID.randomUUID()));
-        System.out.println(productStorage.values());
-    }
-
-    private void getAllArticles() {
         articleStorage.put(UUID.randomUUID(), new Article("Яблоки", "это яблоки", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Манго", "это манго", UUID.randomUUID()));
         articleStorage.put(UUID.randomUUID(), new Article("Абрикосы", "это оно", UUID.randomUUID()));
-    }
-
-    public void testerPr(){
-        System.out.println(" tester" + productStorage.values());
-        System.out.println(" tester" + articleStorage.values());
     }
 
     public Collection<Product> getStorageOfProducts() {
@@ -51,14 +41,14 @@ public class StorageService {
     }
 
     public Collection<Article> getStorageOfArticle() {
-        return new ArrayList<>(articleStorage.values());
+        return articleStorage.values();
     }
 
     public Map<UUID, Searchable> getAllSearchables() {
-        Map<UUID, Searchable> collectionOfSearchables = new HashMap<>();
-        collectionOfSearchables.putAll(productStorage);
-        collectionOfSearchables.putAll(articleStorage);
-        return collectionOfSearchables;
+        Map<UUID, Searchable> allSearchables = new HashMap<>();
+        allSearchables.putAll(productStorage);
+        allSearchables.putAll(articleStorage);
+        return allSearchables;
     }
 
 

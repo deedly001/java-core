@@ -30,6 +30,7 @@ public class ShopController {
 
     @GetMapping("/articles")
     public Collection<Article> getAllArticles() {
+        System.out.println(storageService);
         return storageService.getStorageOfArticle();
     }
 

@@ -20,10 +20,6 @@ public abstract class Product implements Searchable {
     }
 
 
-    public void setProductName(String name) {
-        this.productName = name;
-    }
-
     public String getProductType() {
         return "PRODUCT";
     }

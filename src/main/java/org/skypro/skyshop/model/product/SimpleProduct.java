@@ -29,10 +29,6 @@ public class SimpleProduct extends Product {
         return productCost;
     }
 
-    public void setPrice(Integer cost) {
-        this.productCost = cost;
-    }
-
     public boolean isSpecial() {
         return false;
     }

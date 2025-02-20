@@ -4,6 +4,7 @@ import java.util.UUID;
 public class DiscountedProduct extends Product {
     private Integer basePrice;
     private final Integer discountPrice;
+    private final UUID id;
 
     public DiscountedProduct(String productName, Integer productCost, Integer discountPrice, UUID id) {
         super(productName, id);
@@ -11,6 +12,7 @@ public class DiscountedProduct extends Product {
         checkBasePrice(basePrice);
         this.discountPrice = discountPrice;
         checkDiscountPrice(discountPrice);
+        this.id = id;
 
     }
 
@@ -40,10 +42,6 @@ public class DiscountedProduct extends Product {
         return (int) (basePrice * (1 - discountPrice / 100f));
     }
 
-    @Override
-    public void setPrice(Integer cost) {
-        this.basePrice = cost;
-    }
 
     @Override
     public boolean isSpecial() {
@@ -59,8 +57,4 @@ public class DiscountedProduct extends Product {
         return getProductName() + " : " + getPrice() + " (скидка " + getDiscountPrice() + "%)";
     }
 
-    @Override
-    public UUID getID() {
-        return this.id;
-    }
 }

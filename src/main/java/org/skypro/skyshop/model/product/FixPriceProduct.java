@@ -15,21 +15,12 @@ public class FixPriceProduct extends Product {
         return PRODUCT_FIX_PRICE;
     }
 
-    @Override
-    public void setPrice(Integer cost) {
-        return;
-    }
-
 
     @Override
     public boolean isSpecial() {
         return true;
     }
 
-    @Override
-    public UUID getID() {
-        return id;
-    }
 
     @Override
     public String toString() {

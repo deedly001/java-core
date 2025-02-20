@@ -29,7 +29,6 @@ public class SimpleProduct extends Product {
         return productCost;
     }
 
-    @Override
     public void setPrice(Integer cost) {
         this.productCost = cost;
     }
@@ -39,18 +38,8 @@ public class SimpleProduct extends Product {
     }
 
     @Override
-    public UUID getID() {
-        return id;
-    }
-
-    @Override
     public String toString() {
         return getProductName() + " : " + getPrice();
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
 }

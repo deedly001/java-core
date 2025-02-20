@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.skypro.skyshop.model.search.Searchable;
 
 import java.util.UUID;
-import java.util.stream.Stream;
 
 public abstract class Product implements Searchable {
     private String productName;
-    final UUID id;
+    private final UUID id;
 
     public Product(String productName, UUID id) {
         this.productName = productName;
@@ -50,25 +49,16 @@ public abstract class Product implements Searchable {
         return getProductType();
     }
 
-    @Override
+
     public UUID getId() {
         return id;
     }
 
-    public Integer getPrice() {
-        return null;
-    }
+    public abstract Integer getPrice();
 
-    public void setPrice(Integer cost) {
-    }
-
-    public Stream<?> stream() {
-        return Stream.empty();
-    }
 
     public boolean isSpecial() {
         return false;
     }
 
-    public abstract UUID getID();
 }

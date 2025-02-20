@@ -26,14 +26,22 @@ public class StorageService {
     }
 
     private void getAllItems() {
-        productStorage.put(UUID.randomUUID(), new SimpleProduct("Яблоки", 300, UUID.randomUUID()));
-        productStorage.put(UUID.randomUUID(), new SimpleProduct("Апельсины", 250, UUID.randomUUID()));
-        productStorage.put(UUID.randomUUID(), new SimpleProduct("Голубика", 2400, UUID.randomUUID()));
-        productStorage.put(UUID.randomUUID(), new DiscountedProduct("Манго", 360, 50, UUID.randomUUID()));
-        productStorage.put(UUID.randomUUID(), new FixPriceProduct("Абрикосы", UUID.randomUUID()));
-        articleStorage.put(UUID.randomUUID(), new Article("Яблоки", "это яблоки", UUID.randomUUID()));
-        articleStorage.put(UUID.randomUUID(), new Article("Манго", "это манго", UUID.randomUUID()));
-        articleStorage.put(UUID.randomUUID(), new Article("Абрикосы", "это оно", UUID.randomUUID()));
+        Product apple = new SimpleProduct("Яблоки", 300, UUID.randomUUID());
+        productStorage.put(apple.getId(), apple);
+        Product orange = new SimpleProduct("Апельсины", 250, UUID.randomUUID());
+        productStorage.put(orange.getId(), orange);
+        Product blueberry = new SimpleProduct("Голубика", 2400, UUID.randomUUID());
+        productStorage.put(blueberry.getId(), blueberry);
+        Product mango = new DiscountedProduct("Манго", 360, 5,UUID.randomUUID());
+        productStorage.put(mango.getId(),mango);
+        Product apricots = new FixPriceProduct("Абрикосы", UUID.randomUUID());
+        productStorage.put(apricots.getId(),apricots);
+        Article appleArticle = new Article("Яблоки", "это яблоки", UUID.randomUUID());
+        articleStorage.put(appleArticle.getId(), appleArticle);
+        Article mangoArticle = new Article("Манго", "это манго", UUID.randomUUID());
+        articleStorage.put(mangoArticle.getId(), mangoArticle);
+        Article apricotsArticle = new Article("Абрикосы", "это оно", UUID.randomUUID());
+        articleStorage.put(apricotsArticle.getId(), apricotsArticle);
     }
 
     public Collection<Product> getStorageOfProducts() {

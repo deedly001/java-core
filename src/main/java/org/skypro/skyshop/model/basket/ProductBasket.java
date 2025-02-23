@@ -1,6 +1,7 @@
 package org.skypro.skyshop.model.basket;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 
 @Repository
+@SessionScope
 public class ProductBasket {
     private final Map<UUID, Integer> productsInBasket;
 

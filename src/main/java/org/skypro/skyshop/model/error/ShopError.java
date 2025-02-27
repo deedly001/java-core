@@ -10,4 +10,8 @@ public class ShopError {
         this.message = message;
     }
 
+    public String getShopError(){
+        return code + " " + message;
+    }
+
 }

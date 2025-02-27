@@ -13,7 +13,7 @@ import java.util.*;
 
 
 @Service
-public class StorageService {
+public abstract class StorageService {
     private final Map<UUID, Product> productStorage;
     private final Map<UUID, Article> articleStorage;
 
@@ -60,5 +60,4 @@ public class StorageService {
     public Optional<Product> getProductById(UUID id) throws NoSuchProductException {
         return Optional.ofNullable(productStorage.get(id));
     }
-
 }

@@ -24,7 +24,7 @@ public abstract class StorageService {
     }
 
     private void getAllItems() {
-        Product apple = new SimpleProduct("Яблоки", 300, UUID.randomUUID());
+        Product apple = new SimpleProduct("Яблоко", 300, UUID.randomUUID());
         productStorage.put(apple.getId(), apple);
         Product orange = new SimpleProduct("Апельсины", 250, UUID.randomUUID());
         productStorage.put(orange.getId(), orange);

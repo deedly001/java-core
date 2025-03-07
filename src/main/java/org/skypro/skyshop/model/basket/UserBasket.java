@@ -26,6 +26,10 @@ public class UserBasket {
         return itemsInBasket;
     }
 
+    public Integer getUserBasketSize(){
+        return itemsInBasket.size();
+    }
+
     @Override
     public String toString() {
         return "UserBasket{" +

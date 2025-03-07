@@ -16,4 +16,12 @@ public final class SearchResult {
     public static SearchResult fromSearchable(Searchable searchable) {
         return new SearchResult(searchable.getId(), searchable.getSearchTerm(), searchable.getSearchContentType());
     }
+
+    public String getItemName() {
+        return this.name;
+    }
+
+    public String getItemType() {
+        return this.contentType;
+    }
 }

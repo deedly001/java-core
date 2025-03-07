@@ -13,7 +13,7 @@ import java.util.*;
 
 
 @Service
-public abstract class StorageService {
+public class StorageService {
     private final Map<UUID, Product> productStorage;
     private final Map<UUID, Article> articleStorage;
 

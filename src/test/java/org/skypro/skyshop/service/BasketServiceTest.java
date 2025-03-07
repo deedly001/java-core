@@ -11,11 +11,14 @@ import org.skypro.skyshop.exception.NoSuchProductException;
 import org.skypro.skyshop.model.basket.BasketItem;
 import org.skypro.skyshop.model.basket.ProductBasket;
 import org.skypro.skyshop.model.basket.UserBasket;
+import org.skypro.skyshop.model.product.DiscountedProduct;
+import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -52,17 +55,19 @@ public class BasketServiceTest {
         Assertions.assertTrue(result.getBasketItems().isEmpty());
     }
 
+
+
     @Test
     void testIfProductBasketHaveProducts() {
-        Product apple = new SimpleProduct("Яблоко", 150, UUID.randomUUID());
-        int quantity = 1;
-        Map<UUID, Integer> productMap = new HashMap<>();
-        productMap.put(apple.getId(), quantity);
-        when(productBasket.getAllProducts()).thenReturn(productMap);
-        when(storageService.getProductById(apple.getId())).thenReturn(Optional.of(apple));
+        UUID product1Id = UUID.randomUUID();
+        Collection<Product> collection = new ArrayList<>
+                (List.of(new SimpleProduct("Яблоко", 100, product1Id)));
+        Map<UUID, Integer> map = new HashMap<>(Map.of(product1Id, 1));
+        when(storageService.getStorageOfProducts()).thenReturn(collection);
+        when(productBasket.getAllProducts()).thenReturn(map);
         UserBasket result = basketService.getUserBasket();
-        Assertions.assertEquals(1, result);
-
+        assertEquals(result.getTotal(), collection.stream().mapToInt
+                (Product::getPrice).sum());
     }
 
 }

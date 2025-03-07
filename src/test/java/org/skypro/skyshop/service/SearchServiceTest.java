@@ -49,13 +49,14 @@ public class SearchServiceTest {
 
     @Test
     void testMatchingProductExist() {
+        Map <UUID, Searchable> searchableItems = new HashMap<>();
         Product apple = new SimpleProduct("Яблоко", 150, UUID.randomUUID());
-        Map<UUID, Searchable> searchables = new HashMap<>();
-        searchables.put(apple.getId(), apple);
-        when(storageService.getAllSearchables()).thenReturn(searchables);
+        searchableItems.put(apple.getId(), apple);
+        when(storageService.getAllSearchables()).thenReturn(searchableItems);
         List<SearchResult> results = searchService.search("Яблоко");
-        SearchResult expectedResult = SearchResult.fromSearchable(apple);
-        Assertions.assertEquals(expectedResult, results);
+        assertEquals(1, results.size());
+        assertEquals(apple.getSearchTerm(), results.get(0).getItemName());
+        assertEquals(apple.getProductType(), results.get(0).getItemType());
     }
 
 }
